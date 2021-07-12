@@ -1,0 +1,32 @@
+{
+  "name": "seedorderrecovery",
+  "version": "1.0.0",
+  "description": "Get every combination of the seed phrase with its wallet addresses",
+  "main": "getSeedOrder.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/countersoda/SeedOrderRecovery.git"
+  },
+  "keywords": [
+    "Seed",
+    "Wallet",
+    "Ethereum",
+    "Recovery",
+    "Permutation"
+  ],
+  "author": "countersoda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/countersoda/SeedOrderRecovery/issues"
+  },
+  "homepage": "https://github.com/countersoda/SeedOrderRecovery#readme",
+  "dependencies": {
+    "bip39": "^3.0.4",
+    "ethereumjs-wallet": "^1.0.1",
+    "ethers": "^5.4.1",
+    "fs": "0.0.1-security"
+  }
+}
