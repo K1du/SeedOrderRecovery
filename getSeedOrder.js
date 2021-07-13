@@ -63,7 +63,7 @@ function printProgress(progress) {
   process.stdout.write(
     "Search progress: " +
       ((progress / 479001600) * 100).toFixed(3) +
-      " %, Found: " +
+      "%, Found: " +
       totalAmount +
       ", Saved files: " +
       fileIndex
@@ -76,6 +76,7 @@ function saveFile(A, c, i, counter) {
       totalAmount >= FILE_SIZE * fileIndex ||
       !fs.existsSync("./data/addresses/" + fileIndex + ".txt")
     ) {
+      // TODO: Start a new thread, paralleljs
       fileIndex += 1;
     }
     totalAmount += current.length;
