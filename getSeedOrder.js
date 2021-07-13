@@ -74,24 +74,30 @@ function saveFile(A, c, i, counter) {
   if (counter % UPDATE_COUNTER == 0) {
     if (
       totalAmount >= FILE_SIZE * fileIndex ||
-      !fs.existsSync("./addresses/" + fileIndex + ".txt")
+      !fs.existsSync("./data/addresses/" + fileIndex + ".txt")
     ) {
       fileIndex += 1;
     }
     totalAmount += current.length;
+    let data = ""
+    if(totalAmount >= FILE_SIZE * fileIndex){
+      data = JSON.stringify(current, null, 1).replace("[", "").replace("]", "")
+    } else {
+      data = JSON.stringify(current, null, 1).replace("[", "").replace("]", ",")
+    }
     fs.appendFileSync(
-      "./addresses/" + fileIndex + ".txt",
-      JSON.stringify(current, null, 1).replace("[", "").replace("]", "")
+      "./data/addresses/" + fileIndex + ".txt",
+      data
     );
     state = { A, c, i, counter, totalAmount, fileIndex };
-    fs.writeFileSync("./state.json", JSON.stringify(state, null, 2), cb);
+    fs.writeFileSync("./data/state.json", JSON.stringify(state, null, 2), cb);
     current = [];
   }
 }
 
 const indexes = process.argv.slice(2);
 try {
-  state = JSON.parse(fs.readFileSync("./state.json", "utf8"));
+  state = JSON.parse(fs.readFileSync("./data/state.json", "utf8"));
   console.log("Loading state!");
   totalAmount = state.totalAmount;
   fileIndex = state.fileIndex;
