@@ -1,5 +1,7 @@
 # Permutation data
-data/
+data/result.txt
+data/addresses/*
+data/state.json
 
 .vscode
 
