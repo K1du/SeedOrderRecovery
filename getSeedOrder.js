@@ -37,10 +37,11 @@ function generate(A, c = [], i = 1, counter = 1) {
       }
       getSeedOrder(A);
       counter++;
-      printProgress(counter);
-      saveFile(A, c, i, counter);
       c[i]++;
       i = 1;
+
+      printProgress(counter);
+      saveFile(A, c, i, counter);
     } else {
       c[i] = 0;
       i++;

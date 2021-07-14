@@ -29,6 +29,7 @@
     "ethereumjs-wallet": "^1.0.1",
     "fs": "^0.0.1-security",
     "paralleljs": "^1.1.0",
+    "shelljs": "^0.8.4",
     "web3": "^1.4.0"
   }
 }
