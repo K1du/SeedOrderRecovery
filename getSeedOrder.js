@@ -1,5 +1,6 @@
 import bip39 from "bip39";
 import { hdkey } from "ethereumjs-wallet";
+import Parallel from "paralleljs";
 import fs from "fs";
 // import Web3 from "web3";
 // const providerRPC = "http://localhost:8545/";
@@ -72,24 +73,22 @@ function printProgress(progress) {
 
 function saveFile(A, c, i, counter) {
   if (counter % UPDATE_COUNTER == 0) {
-    if (
-      totalAmount >= FILE_SIZE * fileIndex ||
-      !fs.existsSync("./data/addresses/" + fileIndex + ".txt")
-    ) {
-      // TODO: Start a new thread, paralleljs
+    if (totalAmount >= FILE_SIZE * fileIndex) {
       fileIndex += 1;
+      // if(fileIndex != 1) {
+      //   const thread = new Parallel(fileIndex)
+      // }
     }
     totalAmount += current.length;
-    let data = ""
-    if(totalAmount >= FILE_SIZE * fileIndex){
-      data = JSON.stringify(current, null, 1).replace("[", "").replace("]", "")
+    let data = "";
+    if (totalAmount >= FILE_SIZE * fileIndex) {
+      data = JSON.stringify(current, null, 1).replace("[", "").replace("]", "");
     } else {
-      data = JSON.stringify(current, null, 1).replace("[", "").replace("]", ",")
+      data = JSON.stringify(current, null, 1)
+        .replace("[", "")
+        .replace("]", ",");
     }
-    fs.appendFileSync(
-      "./data/addresses/" + fileIndex + ".txt",
-      data
-    );
+    fs.appendFileSync("./data/addresses/" + fileIndex + ".txt", data);
     state = { A, c, i, counter, totalAmount, fileIndex };
     fs.writeFileSync("./data/state.json", JSON.stringify(state, null, 2), cb);
     current = [];

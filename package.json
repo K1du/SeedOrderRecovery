@@ -27,6 +27,8 @@
   "dependencies": {
     "bip39": "^3.0.4",
     "ethereumjs-wallet": "^1.0.1",
+    "fs": "^0.0.1-security",
+    "paralleljs": "^1.1.0",
     "web3": "^1.4.0"
   }
 }
